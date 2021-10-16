@@ -125,4 +125,4 @@ Access as root is granted to a graphical interface that has an opened shell:
 
 ![Image 8](https://github.com/sergioframi/HackTheBox/blob/master/pictures/08-poison.png)
 
-Please, feel free to contact me if you want to ask or share anything about this machine. Thanks a lot! 
+Please, feel free to ([contact](https://twitter.com/sergioframi)  me if you want to ask or share anything about this machine. Thanks a lot! 
