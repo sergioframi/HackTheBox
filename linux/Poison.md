@@ -40,21 +40,28 @@ Once I know there is only two open ports, I like to run a more precise scan only
 
 #### WebDiscovery
 As the port 80 is open, the first thing to do is visiting the webpage
+
 ![Image 1](https://github.com/sergioframi/HackTheBox/blob/master/pictures/01-poison.png)
+
 In this webpage we are able to run some php files. The *listfiles.php* gets all my attention, so let's run it and observe the result.
+
 ![Image 2](https://github.com/sergioframi/HackTheBox/blob/master/pictures/02-poison.png)
+
 To my surprise, we can observe a suspicious file called *pwdbackup.txt*. We can also observe that the file route is included in the URL.
 First thing that comes to my mind is to try and get the *pwdbackup.txt* including it in the URL.
+
 ![Image 3](https://github.com/sergioframi/HackTheBox/blob/master/pictures/03-poison.png)
 
 We get a base64 encoded password. After decoding it 13 times ([Cyberchef](https://gchq.github.io/CyberChef/) may be useful for this) we obtain the password ```Charix!2#4%6&8(0 ``` 
 
 Second thing that comes to me is trying to get the */etc/passwd* file via [LFI](https://cobalt.io/blog/a-pentesters-guide-to-file-inclusion)
+
 ![Image 4](https://github.com/sergioframi/HackTheBox/blob/master/pictures/04-poison.png)
 
 So, once we have a user (charix) an a password, it's time to try an ssh connection.
 
 Finally, we are able to get the *user*:
+
 ![Image 5](https://github.com/sergioframi/HackTheBox/blob/master/pictures/05-poison.png)
 
 ### Privesc
@@ -64,6 +71,7 @@ After running *ls* at Charix's *home*, a file called *secret.zip* is discovered.
 scp charix@10.10.10.84:/home/charix/secret.zip .
 ```
 After having this file in my local machine, the first password to try is the one we got before. With this, it is possible to extract the file, but it's not possible to read the content:
+
 ![Image 6](https://github.com/sergioframi/HackTheBox/blob/master/pictures/06-poison.png)
 
 So, back at the *poison* machine, after some try and error with different scripts such as [LinPeas.sh](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) or [suid3num.py](https://github.com/Anon-Exploiter/SUID3NUM), I got a closer look to the running procceses.
@@ -78,6 +86,7 @@ root   540   0.0  0.7  67220  7064 v0- I    23:03    0:00.02 xterm -geometry 80x
 ```
 VNC is kind of an RDP for Linux systems. It usually runs on ports 5801 and 5901.
 It can be checked with *netstat -an*:
+
 ![Image 7](https://github.com/sergioframi/HackTheBox/blob/master/pictures/07-poison.png)
 
 To get a closer look to whats running in that port, I decided to run netcat:
