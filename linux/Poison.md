@@ -114,5 +114,5 @@ vncviewer -passwd secret 127.0.0.1:5901
 
 Access as root is granted to a graphical interface that has an opened shell:
 
-![[08-poison.png]] 
+![[https://github.com/sergioframi/HackTheBox/blob/master/pictures/08-poison.png]] 
 
