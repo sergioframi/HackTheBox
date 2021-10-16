@@ -1,6 +1,8 @@
 # Index
 1. [Enumeration](#enumeration)
+	<br>
 	1.1 [Nmap](#nmap)
+	</br>
 	1.2	[Web Discovery](#webdiscovery)
 	
 2. [Privesc](#privesc)
@@ -112,5 +114,5 @@ vncviewer -passwd secret 127.0.0.1:5901
 
 Access as root is granted to a graphical interface that has an opened shell:
 
-![[08-poison.png]]
+![[08-poison.png]] 
 
