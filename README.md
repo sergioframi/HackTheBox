@@ -2,5 +2,5 @@ Hi everyone! My name is Sergio and I'm on my road to get the OSCP. So, as I'm do
 
 # Index
 #### Linux
-[Poison](/linux/Poison.md)
+[Poison](linux/Poison.md)
 
