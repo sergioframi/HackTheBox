@@ -76,7 +76,7 @@ After having this file in my local machine, the first password to try is the one
 
 So, back at the *poison* machine, after some try and error with different scripts such as [LinPeas.sh](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) or [suid3num.py](https://github.com/Anon-Exploiter/SUID3NUM), I got a closer look to the running procceses.
 
-The one that really caughts my eye is the following *vnc* proccess running as root:
+The one that really caught my eye is the following *vnc* proccess running as root:
 
 ```shell
 charix@Poison:~ % ps -aux
