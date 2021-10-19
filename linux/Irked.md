@@ -66,7 +66,7 @@ Nmap done: 1 IP address (1 host up) scanned in 25.60 seconds
 While the *nmap* was working, I tried to do a further investigation at the 80 port. 
 In this port we can observe a web page with only a picture. After performing some *fuzzing* with *gobuster* and *ffuf*, I found nothing.
 
-![[pictures/irked-01.png]]  
+![Image 1](pictures/irked-01.png)
   
   
 Here I had to choose between going further with te RCP or with the IRC.
@@ -96,13 +96,15 @@ I decided to go with the RCP, so I run *rcpinfo*, obtaining the following:
 
 As I didn´t see anything to go on, I decided to go back to the IRC.
 First of all, when I know a technology that is used in the server, such as UnrealIRCd, I like to search it with *searchsploit*, so I can get an idea about the vulnerabilities this technology has.
-![[pictures/irked-02.png]]
+
+![Image 2](pictures/irked-02.png)
 
 As we can see, there is a possible backdoor via metasploit. However, we don´t know the version yet. In order to know the version, I try to connect with the IRC server.  To do so, I used set of tools called [irssi](https://irssi.org/)
 ```shell
 irssi -c 10.10.10.117 --port 8067
 ```
-![[pictures/irked-03.png]]
+
+![Image 3](pictures/irked-03.png)
 
 Once I connected to the server, I was able to see the UnreallRCd version. As expected, it was 3.2.8.1, so we know it is vulnerable to the backdoor that we saw before. However, in order to avoid metasploit, I searched for another exploit, finding this [one](https://github.com/Ranger11Danger/UnrealIRCd-3.2.8.1-Backdoor). It gives the attacker several options for the payload. I ended up chosing *python*.
 
@@ -116,7 +118,7 @@ python3 exploit.py 10.10.10.117 8067 -payload python
 
 We can finally obtain a shell as the user *ircd*
 
-![[pictures/irked-04.png]]
+![Image 4](pictures/irked-04.png)
 
 After listing the directory *home*, it is possible to discover another user, *djmardov*. Running the following command, it is also possible to find the user flag. 
 
@@ -136,7 +138,7 @@ Nevertheless, the user *ircd* does not have permission to read it, so now we nee
 
 After running [linpeas](https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS) we find a rare hidden file in *djmardov*'s directory:
 
-![[pictures/irked-05.png]]
+![Image 5](pictures/irked-05.png)
 
 Weird backup files are always interesting and should be taken into account.
 In this case, it is possible to read this file:
@@ -151,7 +153,7 @@ So, we have a password righ now and a hint: *Super elite steg backup pw*.
 The first thing I try was to access to the machine as *djmardov* with this password by *su djmardov* and by ssh. It wasn't possible, so after reading again the hint, I recalled that we had a web page with only one picture. It was time for stego. 
 In order to download the picture in the web and to extract the image, I used the following commands:
 
-![[pictures/irked-06.png]]
+![Image 6](pictures/irked-06.png)
 
 With this password, it is possible to establish an ssh session as the user *djmardov* and retrieve the content in *user.txt*. Now it's time for privesc:
 
@@ -169,17 +171,17 @@ In case it's the first time you hear about SUID privilege escalation, I recommen
 Following with irked, suid3num provides us with an interesting output:  
   
   
-![[pictures/irked-07.png]]
+![Image 7](pictures/irked-07.png)
 
 After running *viewuser*, we can see an strange error message:
 
-![[pictures/irked-08.png]]
+![Image 8](pictures/irked-08.png)
 
 
 It seems that the binary is looking for a file called *listusers* and located at */tmp*
 As there is no such file in */tmp* directory, I created one file with the command *id* and run again the binary *viewuser*:
 
-![[pictures/irked-09.png]]
+![Image 9](pictures/irked-09.png)
 
 As it can be seen, the error message has changed. This is because the user *root* doesn´t have execution permissions. To get this, it is necessary to run the command:
 ```
@@ -187,10 +189,10 @@ chmod a+x listusers
 ```
 Once that's done, we run again the binary *viewuser*:
 
-![[pictures/irked-10.png]]
+![Image 10](pictures/irked-10.png)
 
 As we expected, the binary executes the command. To obtain a shell as root, the only thing left to do is to change the file *listusers* from *id* to */bin/bash*:
 
-![[pictures/irked-11.png]]
+![Image 11](pictures/irked-11.png)
 
 Please, feel free to [contact](https://twitter.com/sergioframi)  me if you want to ask or share anything about this machine. Thanks a lot! 
