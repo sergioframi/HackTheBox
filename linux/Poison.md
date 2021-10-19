@@ -114,7 +114,7 @@ Password:
 Authentication failed
 ```
 
-After revieweng the manual for vncviewer, I noticed that it is possible to indicate a file as a password. So I remembered we have a *secret* file that hasn´t been used yet.
+After reviewing the manual for vncviewer, I noticed that it is possible to indicate a file as a password. So I remembered we have a *secret* file that hasn´t been used yet.
 After performing the following command:
 
 ```bash
