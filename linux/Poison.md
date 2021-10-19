@@ -99,7 +99,7 @@ By the "RFB" we are able to identify that VNC is running.
 As vncviewer doesn´t exist in the poison machine, the option I had left is to perform an ssh tunnel, so the port 5901 would run in my machine.
 
 ```bash
-ssh -L 5901:128.0.0.1:5901 charix@10.10.10.84
+ssh -L 5901:127.0.0.1:5901 charix@10.10.10.84
 ```
 When the ssh is performed, is it possible to check if it's working by running *netstat -an* in the attacking machine. If it's running, a port 5901 should appear LISTENING.
 
