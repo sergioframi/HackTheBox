@@ -65,6 +65,7 @@ Thanks to *gobuster*, a resource named *exposed.php* is found. It looks like the
 
 It seems like is using something like curl to ask for a web resource. The first thing I thought was *ssrf*, but I wasn´t able to obtain nothing from the *uploads* directory. 
 The following try, was leaving empty the input field and clicking "go". After this, the message obtained was this one:
+
 ![Image 1](pictures/haircut-04.png)
 
 It is obviously using curl. If you try to only write "-- help" and click *go* after that, you will receive the *help* menu of curl. 
