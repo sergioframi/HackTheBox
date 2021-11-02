@@ -1,12 +1,12 @@
 # Index
-1. [[#Enumeration]]
+1. [Enumeration](#enumeration)
 	<br>
 	1.1 [Nmap](#nmap)
-	1.2 [Website](#website)
 	</br>
-
-2. [[#Alternative way to user flag]]
-3. [[#Privesc]]
+	1.2	[Website](#website)
+	
+2. [Alternative way](#Alternative-way-to-user-flag)	
+3. [Privesc](#privesc)
 
 #### Tags
 <details markdown='1'>
@@ -49,7 +49,7 @@ Nmap done: 1 IP address (1 host up) scanned in 13.31 seconds
 ```
 
 
-#### Web site
+#### Website
 As it can bee observed, we only have webite without even *robots.txt* file.
 While navigatin through the website, it seems quite empty, as it only contains one picture:
 
@@ -105,7 +105,7 @@ After making this previous request, we have a shell and the user flag:
 
 ### Alternative way to user flag
 
-Feel free if you want to skip directly into the [[#Privesc]] section. 
+Feel free if you want to skip directly into the [Privesc](#privesc) section. 
 While I was reading the curl manual, I found a way to read files with curl. In this machine, this way allows us to read the */etc/passwd* to discover the user directory, and then the user flag.
 The input that should be submited in order to get the files is:
 
