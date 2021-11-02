@@ -2,7 +2,6 @@ Hi everyone! My name is Sergio and I'm on my road to get the OSCP. So, as I'm do
 
 # Index
 #### [Linux](linux/)
+- [Haircut](linux/Haircut.md)
 - [Irked](linux/Irked.md)
 - [Poison](linux/Poison.md)
-
-
